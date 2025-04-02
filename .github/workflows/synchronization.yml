@@ -1,8 +1,5 @@
 name: Synchronization
 
-env:
-  WORKFLOW_BRANCH: feat/synchronization-workflow
-
 on:
   pull_request:
   # TODO uncomment
@@ -24,7 +21,6 @@ jobs:
     permissions: write-all
     with:
       # TODO make it master
-      actionBranchName: feat/synchronization-workflow
       appId: ${{ vars.REES46_PUBLISHER_ID }}
       targetRepository: rees46/kmp
       syncIgnore: ".git,.idea,.github"
