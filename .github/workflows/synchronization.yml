@@ -1,8 +1,5 @@
 name: Synchronization
 
-env:
-  WORKFLOW_BRANCH: feat/synchronization-workflow
-
 on:
   pull_request:
   # TODO uncomment
@@ -17,11 +14,13 @@ on:
 
 jobs:
   run:
-    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
+    # TODO uncomment
+    # if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
     # uses: atls/shared/.github/workflows/synchronization.yaml@master
-    uses: atls/shared/.github/workflows/synchronization.yaml@feat/synchronization-workflow
+    uses: atls/shared/.github/workflows/synchronisation.yaml@feat/synchronization-workflow
     permissions: write-all
     with:
+      # TODO make it master
       appId: ${{ vars.REES46_PUBLISHER_ID }}
       targetRepository: rees46/kmp
       syncIgnore: ".git,.idea,.github"
