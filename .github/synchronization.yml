@@ -19,7 +19,7 @@ jobs:
   run:
     if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
     # uses: atls/shared/.github/workflows/synchronization.yaml@master
-    uses: atls/shared/.github/workflows/synchronization.yaml@${{ env.WORKFLOW_BRANCH }}
+    uses: atls/shared/.github/workflows/synchronization.yaml@feat/synchronization-workflow
     permissions: write-all
     with:
       appId: ${{ vars.REES46_PUBLISHER_ID }}
