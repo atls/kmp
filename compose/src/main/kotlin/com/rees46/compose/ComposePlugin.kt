@@ -1,4 +1,4 @@
-package com.atls.compose
+package com.rees46.compose
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -14,8 +14,8 @@ class ComposePlugin : Plugin<Project> {
             pluginManager.apply("org.jetbrains.kotlin.multiplatform")
             pluginManager.apply("org.jetbrains.compose")
             pluginManager.apply("org.jetbrains.kotlin.plugin.compose")
-            pluginManager.apply("com.atls.ios")
-            pluginManager.apply("com.atls.android")
+            pluginManager.apply("com.rees46.ios")
+            pluginManager.apply("com.rees46.android")
 
             val composeDependencies = listOf(
                 "org.jetbrains.compose.runtime:runtime:$composeVersion",

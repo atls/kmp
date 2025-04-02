@@ -1,4 +1,4 @@
-package com.atls.android
+package com.rees46.android
 
 import com.android.build.gradle.BaseExtension
 import org.gradle.api.JavaVersion

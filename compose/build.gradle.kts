@@ -4,7 +4,7 @@ plugins {
     `maven-publish`
 }
 
-group = "com.atls.plugins"
+group = "com.rees46.plugins"
 version = "1.0.0"
 
 repositories {
@@ -22,8 +22,8 @@ dependencies {
 gradlePlugin {
     plugins {
         create("composePlugin") {
-            id = "com.atls.compose"
-            implementationClass = "com.atls.compose.ComposePlugin"
+            id = "com.rees46.compose"
+            implementationClass = "com.rees46.compose.ComposePlugin"
         }
     }
 }

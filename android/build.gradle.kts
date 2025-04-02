@@ -3,7 +3,7 @@ plugins {
     `java-gradle-plugin`
     `maven-publish`
 }
-group = "com.atls.plugins"
+group = "com.rees46.plugins"
 version = "1.0.0"
 
 repositories {
@@ -20,8 +20,8 @@ dependencies {
 gradlePlugin {
     plugins {
         create("androidPlugin") {
-            id = "com.atls.android"
-            implementationClass = "com.atls.android.AndroidPlugin"
+            id = "com.rees46.android"
+            implementationClass = "com.rees46.android.AndroidPlugin"
         }
     }
 }

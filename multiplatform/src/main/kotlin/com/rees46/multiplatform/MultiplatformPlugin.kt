@@ -1,4 +1,4 @@
-package com.atls.multiplatform
+package com.rees46.multiplatform
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -8,8 +8,8 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 class MultiplatformPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            pluginManager.apply("com.atls.ios")
-            pluginManager.apply("com.atls.android")
+            pluginManager.apply("com.rees46.ios")
+            pluginManager.apply("com.rees46.android")
 
             extensions.getByType<KotlinMultiplatformExtension>().apply {
                 sourceSets.getByName("commonMain").dependencies {

@@ -4,7 +4,7 @@ plugins {
     `maven-publish`
 }
 
-group = "com.atls.plugins"
+group = "com.rees46.plugins"
 version = "1.0.0"
 
 repositories {
@@ -21,8 +21,8 @@ dependencies {
 gradlePlugin {
     plugins {
         create("multiplatformPlugin") {
-            id = "com.atls.multiplatform"
-            implementationClass = "com.atls.multiplatform.MultiplatformPlugin"
+            id = "com.rees46.multiplatform"
+            implementationClass = "com.rees46.multiplatform.MultiplatformPlugin"
         }
     }
 }

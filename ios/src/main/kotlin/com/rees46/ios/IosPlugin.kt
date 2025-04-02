@@ -1,4 +1,4 @@
-package com.atls.ios
+package com.rees46.ios
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project

@@ -3,7 +3,7 @@ plugins {
     `java-gradle-plugin`
     `maven-publish`
 }
-group = "com.atls.plugins"
+group = "com.rees46.plugins"
 version = "1.0.0"
 
 repositories {
@@ -17,8 +17,8 @@ dependencies {
 gradlePlugin {
     plugins {
         create("iosPlugin") {
-            id = "com.atls.ios"
-            implementationClass = "com.atls.ios.IosPlugin"
+            id = "com.rees46.ios"
+            implementationClass = "com.rees46.ios.IosPlugin"
         }
     }
 }
