@@ -23,6 +23,8 @@ jobs:
     uses: atls/shared/.github/workflows/synchronisation.yaml@feat/synchronization-workflow
     permissions: write-all
     with:
+      # TODO make it master
+      actionBranchName: feat/synchronization-workflow
       appId: ${{ vars.REES46_PUBLISHER_ID }}
       targetRepository: rees46/kmp
       syncIgnore: ".git,.idea,.github"
