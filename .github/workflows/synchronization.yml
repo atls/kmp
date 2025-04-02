@@ -24,7 +24,7 @@ jobs:
     permissions: write-all
     with:
       # TODO make it master
-      actionBranchName: ${{ env.WORKFLOW_BRANCH }}
+      actionBranchName: feat/synchronization-workflow
       appId: ${{ vars.REES46_PUBLISHER_ID }}
       targetRepository: rees46/kmp
       syncIgnore: ".git,.idea,.github"
