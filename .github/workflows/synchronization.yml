@@ -17,7 +17,8 @@ on:
 
 jobs:
   run:
-    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
+    # TODO uncomment
+    # if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
     # uses: atls/shared/.github/workflows/synchronization.yaml@master
     uses: atls/shared/.github/workflows/synchronisation.yaml@feat/synchronization-workflow
     permissions: write-all
