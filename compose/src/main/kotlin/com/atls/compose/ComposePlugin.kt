@@ -33,6 +33,7 @@ class ComposePlugin : Plugin<Project> {
                 sourceSets.getByName("androidMain").dependencies {
                     implementation("androidx.lifecycle:lifecycle-viewmodel:$androidxLifecycleVersion")
                     implementation("androidx.lifecycle:lifecycle-runtime-compose:$androidxLifecycleVersion")
+                    implementation("org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose:${androidxLifecycleVersion}")
                 }
             }
         }
