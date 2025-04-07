@@ -22,6 +22,7 @@ abstract class ModuleGenerator(
         createDirectoryStructure(moduleDir)
         generateGradleFile(moduleDir)
         generateKotlinFiles(moduleDir)
+        addGitignore(moduleDir)
         addToSettingsGradle()
 
         println("Created module '$modulePath' at ${moduleDir.relativeTo(project.rootDir)}")
@@ -53,6 +54,15 @@ abstract class ModuleGenerator(
 
         val kotlinPath = "src/commonMain/kotlin/${organization.replace(".", "/")}/$moduleName"
         File(moduleDir, "$kotlinPath/Greeting.kt").writeText(template)
+    }
+
+    private fun addGitignore(moduleDir: File) {
+        val gitignoreContent = """
+            /build
+        """.trimIndent()
+
+        File(moduleDir, ".gitignore").writeText(gitignoreContent)
+        println("Added .gitignore to ${moduleDir.relativeTo(project.rootDir)}")
     }
 
     private fun addToSettingsGradle() {
