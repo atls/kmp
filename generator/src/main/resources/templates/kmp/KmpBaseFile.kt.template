@@ -1,5 +1,5 @@
 package {{PACKAGE}}
 
-class {{BASENAME}} {
+class Greeting() {
     fun hello() = "Hello from {{MODULENAME}}!"
 }

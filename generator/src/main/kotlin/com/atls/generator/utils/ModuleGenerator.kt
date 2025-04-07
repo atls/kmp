@@ -49,6 +49,7 @@ abstract class ModuleGenerator(
     protected open fun generateKotlinFiles(moduleDir: File) {
         val template = readResource(kotlinTemplatePath)
             .replace("{{PACKAGE}}", "$organization.$moduleName")
+            .replace("{{MODULENAME}}", moduleName)
 
         val kotlinPath = "src/commonMain/kotlin/${organization.replace(".", "/")}/$moduleName"
         File(moduleDir, "$kotlinPath/Greeting.kt").writeText(template)
