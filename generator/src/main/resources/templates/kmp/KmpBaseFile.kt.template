@@ -1,0 +1,5 @@
+package {{PACKAGE}}
+
+class {{BASENAME}} {
+    fun hello() = "Hello from {{MODULENAME}}!"
+}
