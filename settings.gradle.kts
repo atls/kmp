@@ -6,3 +6,5 @@ include(":multiplatform")
 include(":compose")
 include(":android")
 include(":ios")
+
+include(":generator")
