@@ -27,6 +27,8 @@ gradlePlugin {
 }
 
 tasks.register("bumpPatchVersion") {
+	doNotTrackState("Modifies build files")
+
     doLast {
         val (major, minor, patch) = version.toString().split(".").map { it.toInt() }
         val newVersion = "$major.$minor.${patch + 1}"
