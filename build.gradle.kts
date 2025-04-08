@@ -16,3 +16,12 @@ dependencies {
     implementation("com.android.tools.build:gradle:8.9.0")
     implementation("org.jetbrains.multiplatform:multiplatform-gradle-plugin:1.7.0")
 }
+
+tasks.register("bumpAllVersions") {
+    dependsOn(
+        ":android:bumpPatchVersion",
+        ":compose:bumpPatchVersion",
+        ":ios:bumpPatchVersion",
+        ":multiplatform:bumpPatchVersion"
+    )
+}
