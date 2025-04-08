@@ -1,0 +1,28 @@
+name: Synchronization
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - master
+    paths-ignore:
+      - ".github/**"
+  workflow_dispatch:
+
+jobs:
+  run:
+    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
+    uses: atls/shared/.github/workflows/synchronization.yaml@master
+    permissions: write-all
+    with:
+      appId: ${{ vars.REES46_PUBLISHER_ID }}
+      targetRepository: rees46/kmp
+      targetOrganization: rees46
+      syncIgnore: ".git,.idea,.github"
+      replacementExtentions: "*.kts,*.kt"
+      replacementContents: "atls|rees46"
+      sourceDirname: atls
+      targetDirname: rees46
+    secrets:
+      privateKey: ${{ secrets.REES46_PUBLISHER_SECRET }}
