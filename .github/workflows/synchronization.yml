@@ -23,8 +23,10 @@ jobs:
       appId: ${{ vars.REES46_PUBLISHER_ID }}
       targetRepository: rees46/kmp
       targetOrganization: rees46
-      syncIgnore: ".git,.idea,.github/ISSUE_TEMPLATE"
+      syncIgnore: ".git,.idea,.github"
       replacementExtentions: "*.kts,*.kt"
       replacementContents: "atls|rees46"
+      sourceDirname: atls
+      targetDirname: rees46
     secrets:
       privateKey: ${{ secrets.REES46_PUBLISHER_SECRET }}
