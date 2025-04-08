@@ -20,10 +20,10 @@ jobs:
     uses: atls/shared/.github/workflows/synchronisation.yaml@feat/synchronization-workflow
     permissions: write-all
     with:
-      # TODO make it master
       appId: ${{ vars.REES46_PUBLISHER_ID }}
       targetRepository: rees46/kmp
-      syncIgnore: ".git,.idea,.github"
+      targetOrganization: rees46
+      syncIgnore: ".git,.idea,.github/ISSUE_TEMPLATE"
       replacementExtentions: "*.kts,*.kt"
       replacementContents: "atls|rees46"
     secrets:
