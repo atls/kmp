@@ -2,22 +2,18 @@ name: Synchronization
 
 on:
   pull_request:
-  # TODO uncomment
-  # pull_request:
-  #   types:
-  #     - closed
-  #   branches:
-  #     - master
-  #   paths-ignore:
-  #     - ".github/**"
-  # workflow_dispatch:
+    types:
+      - closed
+    branches:
+      - master
+    paths-ignore:
+      - ".github/**"
+  workflow_dispatch:
 
 jobs:
   run:
-    # TODO uncomment
-    # if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
-    # uses: atls/shared/.github/workflows/synchronization.yaml@master
-    uses: atls/shared/.github/workflows/synchronisation.yaml@feat/synchronization-workflow
+    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
+    uses: atls/shared/.github/workflows/synchronization.yaml@master
     permissions: write-all
     with:
       appId: ${{ vars.REES46_PUBLISHER_ID }}
