@@ -17,12 +17,22 @@ jobs:
     # TODO uncomment
     # if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
     # uses: atls/kmp/.github/reusable-workflows/android-version.yml@master
-    uses: atls/kmp/.github/reusable-workflows/android-version.yml@feat/publish-workflow
-    permissions: write-all
-    with:
-      appId: ${{ vars.ATLANTIS_SUPER_BOT_APP_ID }}
-    secrets:
-      appSecret: ${{ secrets.ATLANTIS_SUPER_BOT_PRIVATE_KEY }}
+    # uses: atls/kmp/.github/reusable-workflows/android-version.yml@feat/publish-workflow
+    # permissions: write-all
+    # with:
+    #   appId: ${{ vars.ATLANTIS_SUPER_BOT_APP_ID }}
+    # secrets:
+    #   appSecret: ${{ secrets.ATLANTIS_SUPER_BOT_PRIVATE_KEY }}
+
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_ACTOR: ${{ github.actor }}
+        run: |
+          echo ./gradlew publish
 
   # publish:
   #   # TODO uncomment
