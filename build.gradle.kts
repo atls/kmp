@@ -38,12 +38,6 @@ tasks.register("bumpPatchVersion") {
     }
 }
 
-tasks.withType<AbstractPublishToMaven>().configureEach {
-    if (publication.name == "pluginMaven") {
-        enabled = false
-    }
-}
-
 tasks.register("bumpAllVersions") {
     dependsOn(
         ":android:bumpPatchVersion",
