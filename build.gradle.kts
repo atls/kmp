@@ -38,27 +38,17 @@ tasks.register("bumpPatchVersion") {
     }
 }
 
-tasks.register("bumpAllVersions") {
-    dependsOn(
-        ":android:bumpPatchVersion",
-        ":compose:bumpPatchVersion",
-        ":ios:bumpPatchVersion",
-        ":multiplatform:bumpPatchVersion"
-    )
-}
-
-// kotlin {
-    // android()
-    // ios()
-// }
-
 val githubUser: String = System.getenv("GITHUB_USER") ?: "defaultUser"
 val githubToken: String = System.getenv("GITHUB_TOKEN") ?: "defaultToken"
 val githubRepo: String = System.getenv("GITHUB_REPO") ?: "kmp"
 
 publishing {
     publications {
-        create<MavenPublication>("multiplatform") {
+		withType<MavenPublication> {
+            if (name == "pluginMaven") {
+                artifactId = "${project.name}-plugin"
+            }
+
 			group = "com.github.$githubUser"
             artifactId = project.name
 
