@@ -51,7 +51,7 @@ publishing {
             pom {
                 name.set("KMP")
                 description.set("Kotlin Multiplatform Modules")
-                url.set("https://github.com/$githubUser/$githubRepo")
+                url.set("https://github.com/$githubRepo")
                 licenses {
                     license {
                         name.set("The Apache License, Version 2.0")
@@ -66,9 +66,9 @@ publishing {
                     }
                 }
                 scm {
-                    connection.set("scm:git:git://github.com/$githubUser/$githubRepo.git")
-                    developerConnection.set("scm:git:ssh://github.com/$githubUser/$githubRepo.git")
-                    url.set("https://github.com/$githubUser/$githubRepo")
+                    connection.set("scm:git:git://github.com/$githubRepo.git")
+                    developerConnection.set("scm:git:ssh://github.com/$githubRepo.git")
+                    url.set("https://github.com/$githubRepo")
                 }
             }
         }
@@ -76,7 +76,7 @@ publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/$githubUser/$githubRepo")
+            url = uri("https://maven.pkg.github.com/$githubRepo")
 
             credentials {
                 username = githubUser
