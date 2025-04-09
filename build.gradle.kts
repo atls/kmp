@@ -1,9 +1,10 @@
 plugins {
     `maven-publish`
     `kotlin-dsl`
+    kotlin("multiplatform") version "2.1.0"
 }
 
-version = "1.0.0"
+version = "1.0.1"
 
 repositories {
     google()
@@ -17,6 +18,31 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:2.1.0")
     implementation("com.android.tools.build:gradle:8.9.0")
     // implementation("org.jetbrains.multiplatform:multiplatform-gradle-plugin:1.7.0")
+}
+
+tasks.register("bumpPatchVersion") {
+	doNotTrackState("Modifies build files")
+
+    doLast {
+        val (major, minor, patch) = version.toString().split(".").map { it.toInt() }
+        val newVersion = "$major.$minor.${patch + 1}"
+
+        val buildFile = file("build.gradle.kts")
+        val content = buildFile.readText()
+            .replace(
+                Regex("version\\s*=\\s*[\"']$version[\"']"), 
+                "version = \"$newVersion\""
+            )
+
+        buildFile.writeText(content)
+        println("Version updated from $version to $newVersion")
+    }
+}
+
+tasks.withType<AbstractPublishToMaven>().configureEach {
+    if (publication.name == "pluginMaven") {
+        enabled = false
+    }
 }
 
 tasks.register("bumpAllVersions") {
