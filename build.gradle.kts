@@ -1,7 +1,6 @@
 plugins {
     `maven-publish`
     `kotlin-dsl`
-    kotlin("multiplatform") version "2.1.0"
 }
 
 version = "1.0.1"
