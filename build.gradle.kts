@@ -3,8 +3,6 @@ plugins {
     `kotlin-dsl`
 }
 
-// TODO вынести в переменную окружнения
-group = "com.github.atls"
 version = "1.0.0"
 
 repositories {
@@ -42,6 +40,7 @@ val githubRepo: String = System.getenv("GITHUB_REPO") ?: "kmp"
 publishing {
     publications {
         create<MavenPublication>("multiplatform") {
+			group = "com.github.$githubUser"
             artifactId = project.name
 
             from(components["kotlin"])
