@@ -31,21 +31,14 @@ jobs:
           branch: master
 
       - name: Bump version
-        env:
-          FILE_PATH: ${{ inputs.podSpecFilePath }}
         id: version
         run: |
-          current_version=$(awk -F"'" '/s.version *=/ {print $2}' "$FILE_PATH")
-          IFS='.' read -r major minor patch <<< "$current_version"
-          new_patch=$((patch + 1))
-          new_version="$major.$minor.$new_patch"
-          sed -i "s/$current_version/$new_version/" "$FILE_PATH"
-          echo "version=$new_version" >> $GITHUB_OUTPUT
+          ./gradlew bumpPatchVersion --no-configuration-cache
 
       - name: Retrieve version
         id: versionName
         env:
-          FILE_PATH: ./personalization-sdk/build.gradle
+          FILE_PATH: ./build.gradle.kts
         run: |
           version=$(grep -o "version='[^']*'" $FILE_PATH | head -1 | cut -d"'" -f2)
           echo "versionName=$version" >> $GITHUB_ENV
