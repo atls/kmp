@@ -38,11 +38,6 @@ jobs:
         with:
           token: ${{ steps.app-token.outputs.token }}
 
-      - name: Clean
-        run: |
-          ./gradlew clean
-          rm -rf ~/.gradle/caches
-
       - name: publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
