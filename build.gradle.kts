@@ -37,7 +37,7 @@ tasks.register("bumpAllVersions") {
 
 val githubUser: String = System.getenv("GITHUB_ACTOR") ?: "defaultUser"
 val githubToken: String = System.getenv("GITHUB_TOKEN") ?: "defaultToken"
-val githubRepo = "kmp"
+val githubRepo: String = System.getenv("GITHUB_REPO") ?: "kmp"
 
 publishing {
     publications {
