@@ -13,16 +13,16 @@ on:
   # workflow_dispatch:
 
 jobs:
-  version:
-    # TODO uncomment
-    # if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
-    # uses: atls/kmp/.github/reusable-workflows/android-version.yml@master
-    # uses: atls/kmp/.github/reusable-workflows/android-version.yml@feat/publish-workflow
-    # permissions: write-all
-    # with:
-    #   appId: ${{ vars.ATLANTIS_SUPER_BOT_APP_ID }}
-    # secrets:
-    #   appSecret: ${{ secrets.ATLANTIS_SUPER_BOT_PRIVATE_KEY }}
+  # version:
+  # TODO uncomment
+  # if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
+  # uses: atls/kmp/.github/reusable-workflows/android-version.yml@master
+  # uses: atls/kmp/.github/reusable-workflows/android-version.yml@feat/publish-workflow
+  # permissions: write-all
+  # with:
+  #   appId: ${{ vars.ATLANTIS_SUPER_BOT_APP_ID }}
+  # secrets:
+  #   appSecret: ${{ secrets.ATLANTIS_SUPER_BOT_PRIVATE_KEY }}
 
   publish:
     runs-on: ubuntu-latest
