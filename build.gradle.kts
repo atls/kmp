@@ -1,7 +1,6 @@
 plugins {
     `maven-publish`
     `kotlin-dsl`
-	`multiplatform`
 }
 
 // TODO вынести в переменную окружнения
@@ -47,8 +46,8 @@ publishing {
 
             from(components["kotlin"])
 
-            artifact(sourcesJar.get())
-            artifact(javadocJar.get())
+            // artifact(sourcesJar.get())
+            // artifact(javadocJar.get())
 
             pom {
                 name.set("KMP")
