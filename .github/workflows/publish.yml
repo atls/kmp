@@ -38,18 +38,13 @@ jobs:
         with:
           token: ${{ steps.app-token.outputs.token }}
 
-      - name: debug
+      - name: publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_USER: ${{ github.repository_owner }}
+          GITHUB_REPO: ${{ github.repository.split('/')[1] }}
         run: |
-          echo ${{ github.repository_owner }}
-          echo ${{ github.repository }}
-
-      # - name: publish
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     GITHUB_USER: ${{ github.repository_owner }}
-      #     GITHUB_REPO: ${{ github.repository }}
-      #   run: |
-      #     ./gradlew publish
+          ./gradlew publish
 
   ## publish:
   #   # TODO uncomment
