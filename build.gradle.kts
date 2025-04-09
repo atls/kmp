@@ -3,7 +3,7 @@ plugins {
     `kotlin-dsl`
 }
 
-version = "1.0.1"
+version = "1.0.3"
 
 repositories {
     google()
@@ -16,11 +16,10 @@ repositories {
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:2.1.0")
     implementation("com.android.tools.build:gradle:8.9.0")
-    // implementation("org.jetbrains.multiplatform:multiplatform-gradle-plugin:1.7.0")
 }
 
 tasks.register("bumpPatchVersion") {
-	doNotTrackState("Modifies build files")
+    doNotTrackState("Modifies build files")
 
     doLast {
         val (major, minor, patch) = version.toString().split(".").map { it.toInt() }
@@ -44,18 +43,11 @@ val githubRepo: String = System.getenv("GITHUB_REPO") ?: "kmp"
 
 publishing {
     publications {
-		withType<MavenPublication> {
-            if (name == "pluginMaven") {
-                artifactId = "${project.name}-plugin"
-            }
-
-			group = "com.github.$githubUser"
+        create<MavenPublication>("multiplatform") {
+            group = "com.github.$githubUser"
             artifactId = project.name
 
             from(components["kotlin"])
-
-            // artifact(sourcesJar.get())
-            // artifact(javadocJar.get())
 
             pom {
                 name.set("KMP")
@@ -81,7 +73,15 @@ publishing {
                 }
             }
         }
+        afterEvaluate {
+            tasks.withType<PublishToMavenRepository>().configureEach {
+                if (publication.name.contains("pluginMaven", ignoreCase = true)) {
+                    enabled = false
+                }
+            }
+        }
     }
+
     repositories {
         maven {
             name = "GitHubPackages"
