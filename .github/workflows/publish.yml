@@ -45,7 +45,7 @@ jobs:
         run: |
           ./gradlew publish
 
-  # publish:
+  ## publish:
   #   # TODO uncomment
   #   # needs: version
   #   # uses: atls/kmp/.github/reusable-workflows/version.yml@master
