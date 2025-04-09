@@ -38,6 +38,10 @@ jobs:
         with:
           token: ${{ steps.app-token.outputs.token }}
 
+      - name: debug
+        run: |
+          echo ${{ github.repository_owner }}
+
       - name: publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
