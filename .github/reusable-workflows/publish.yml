@@ -33,5 +33,4 @@ jobs:
           GITHUB_USER: ${{ github.repository_owner }}
           GITHUB_REPO: ${{ github.repository }}
         run: |
-          # ./gradlew publish
           ./gradlew publishMultiplatformPublicationToGitHubPackagesRepository
