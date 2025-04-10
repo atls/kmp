@@ -14,7 +14,7 @@ jobs:
   version:
     runs-on: ubuntu-latest
     steps:
-      - uses: atls/kmp/.github/actions/version@master
+      - uses: atls/kmp/.github/actions/version@fix/workflow
         if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
         with:
           appId: ${{ vars.ATLANTIS_SUPER_BOT_APP_ID }}
@@ -24,7 +24,7 @@ jobs:
     needs: version
     runs-on: ubuntu-latest
     steps:
-      - uses: atls/kmp/.github/actions/publish@master
+      - uses: atls/kmp/.github/actions/publish@fix/workflow
         with:
           appId: ${{ vars.ATLANTIS_SUPER_BOT_APP_ID }}
           appSecret: ${{ secrets.ATLANTIS_SUPER_BOT_PRIVATE_KEY }}
@@ -33,7 +33,7 @@ jobs:
     needs: [publish, version]
     runs-on: ubuntu-latest
     steps:
-      - uses: atls/kmp/.github/actions/release@master
+      - uses: atls/kmp/.github/actions/release@fix/workflow
         with:
           appId: ${{ vars.ATLANTIS_SUPER_BOT_APP_ID }}
           appSecret: ${{ secrets.ATLANTIS_SUPER_BOT_PRIVATE_KEY }}
