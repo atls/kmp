@@ -29,7 +29,7 @@ tasks.register("bumpPatchVersion") {
         val buildFile = file("build.gradle.kts")
         val content = buildFile.readText()
             .replace(
-                Regex("version\\s*=\\s*[\"']$version[\"']"), 
+                Regex("version\\s*=\\s*[\"']$version[\"']"),
                 "version = \"$newVersion\""
             )
 

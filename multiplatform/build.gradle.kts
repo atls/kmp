@@ -7,6 +7,8 @@ plugins {
 group = "com.atls.plugins"
 version = "1.0.0"
 
+apply(from = rootProject.file("publishing.gradle.kts"))
+
 repositories {
     mavenCentral()
     maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")

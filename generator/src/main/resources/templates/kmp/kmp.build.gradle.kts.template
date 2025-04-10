@@ -1,0 +1,21 @@
+plugins {
+    alias(libs.plugins.kotlinMultiplatform)
+    id("com.atls.multiplatform") version "1.0.0"
+}
+
+kotlin {
+    sourceSets {
+        commonMain {
+            dependencies {
+            }
+        }
+    }
+}
+
+iosConfig {
+    baseName.set("{{BASENAME}}")
+}
+
+android {
+    namespace  = "{{PACKAGE}}"
+}

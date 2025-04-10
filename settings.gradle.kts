@@ -7,6 +7,7 @@ include(":compose")
 include(":android")
 include(":ios")
 
+include(":generator")
 pluginManagement {
     repositories {
         gradlePluginPortal()
