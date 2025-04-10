@@ -1,7 +1,7 @@
 package com.atls.generator
 
-import com.atls.generator.compose.GenerateComposeModuleTask
-import com.atls.generator.kmp.GenerateKmpModuleTask
+import com.atls.generator.tasks.compose.GenerateComposeModuleTask
+import com.atls.generator.tasks.kmp.GenerateKmpModuleTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 

@@ -1,4 +1,4 @@
-package com.atls.generator
+package com.atls.generator.tasks
 
 import org.gradle.api.DefaultTask
 import org.gradle.api.provider.Property

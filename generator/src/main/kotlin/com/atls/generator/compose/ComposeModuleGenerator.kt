@@ -1,6 +1,6 @@
 package com.atls.generator.compose
 
-import com.atls.generator.utils.ModuleGenerator
+import com.atls.generator.core.ModuleGenerator
 import org.gradle.api.Project
 
 class ComposeModuleGenerator(

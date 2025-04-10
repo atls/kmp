@@ -1,4 +1,4 @@
-package com.atls.generator.utils
+package com.atls.generator.core
 
 import org.gradle.api.Project
 import org.gradle.api.logging.Logger

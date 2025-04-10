@@ -1,6 +1,7 @@
-package com.atls.generator.kmp
+package com.atls.generator.tasks.kmp
 
-import com.atls.generator.BaseGeneratorTask
+import com.atls.generator.kmp.KmpModuleGenerator
+import com.atls.generator.tasks.BaseGeneratorTask
 import org.gradle.api.tasks.TaskAction
 
 abstract class GenerateKmpModuleTask : BaseGeneratorTask() {
