@@ -21,7 +21,7 @@ jobs:
   #         appSecret: ${{ secrets.ATLANTIS_SUPER_BOT_PRIVATE_KEY }}
 
   publish:
-    needs: version
+    # needs: version
     runs-on: ubuntu-latest
     steps:
       - uses: atls/kmp/.github/actions/publish@fix/workflow
