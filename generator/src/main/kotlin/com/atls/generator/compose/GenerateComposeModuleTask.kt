@@ -1,6 +1,6 @@
 package com.atls.generator.compose
 
-import com.atls.generator.BaseGeneratorTask
+import com.atls.generator.utils.BaseGeneratorTask
 import org.gradle.api.tasks.TaskAction
 
 abstract class GenerateComposeModuleTask : BaseGeneratorTask() {
