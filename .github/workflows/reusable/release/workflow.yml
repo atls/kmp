@@ -1,4 +1,4 @@
-name: Github release
+name: Reusable github release workflow
 
 on:
   workflow_call:

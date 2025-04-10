@@ -1,4 +1,4 @@
-name: Publish workflow
+name: Reusable publish workflow
 
 on:
   workflow_call:

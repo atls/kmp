@@ -1,4 +1,4 @@
-name: Reusable Android SDK version
+name: Reusable patch version
 
 on:
   workflow_call:
