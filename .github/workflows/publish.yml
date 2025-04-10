@@ -31,7 +31,8 @@ jobs:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
 
   release:
-    needs: [publish, version]
+    # needs: [publish, version]
+    needs: [publish]
     runs-on: ubuntu-latest
     steps:
       - uses: atls/kmp/.github/actions/release@fix/workflow
