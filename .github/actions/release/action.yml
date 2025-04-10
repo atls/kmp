@@ -1,0 +1,51 @@
+name: Reusable github release action
+description: Reusable github release action
+
+inputs:
+  appId:
+    description: "App ID for committing and pushing"
+    required: true
+  appSecret:
+    description: "App secret"
+    required: true
+
+runs:
+  using: composite
+
+  steps:
+    - uses: actions/create-github-app-token@v1
+      id: app-token
+      with:
+        app-id: ${{ inputs.appId }}
+        private-key: ${{ inputs.appSecret }}
+
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        token: ${{ steps.app-token.outputs.token }}
+        branch: master
+
+    - name: Retrieve version
+      shell: bash
+      id: versionName
+      env:
+        FILE_PATH: ./build.gradle.kts
+      run: |
+        version=$(grep -o "version='[^']*'" $FILE_PATH | head -1 | cut -d"'" -f2)
+        echo "versionName=$version" >> $GITHUB_ENV
+        echo "versionName=$version" >> $GITHUB_OUTPUT
+
+    - name: Zip source
+      shell: bash
+      run: |
+        tar -czvf source.tgz *
+
+    - name: Create release
+      shell: bash
+      env:
+        TAG: ${{ steps.versionName.outputs.versionName }}
+        GH_TOKEN: ${{ steps.app-token.outputs.token }}
+      run: |
+        gh release create "v$TAG" ./source.tgz \
+        --title=$TAG \
+        --generate-notes
