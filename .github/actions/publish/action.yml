@@ -8,6 +8,9 @@ inputs:
   appSecret:
     description: "App secret"
     required: true
+  githubToken:
+    description: "github token"
+    required: true
 
 runs:
   using: composite
@@ -27,7 +30,7 @@ runs:
     - name: publish
       shell: bash
       env:
-        GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+        GITHUB_TOKEN: ${{ inputs.githubToken }}
         GITHUB_USER: ${{ github.repository_owner }}
         GITHUB_REPO: ${{ github.repository }}
       run: |
