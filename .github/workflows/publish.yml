@@ -12,28 +12,29 @@ on:
 
 jobs:
   version:
-    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
-    uses: atls/kmp/.github/workflows/reusable/version/workflow.yml@master
-    permissions: write-all
-    with:
-      appId: ${{ vars.ATLANTIS_SUPER_BOT_APP_ID }}
-    secrets:
-      appSecret: ${{ secrets.ATLANTIS_SUPER_BOT_PRIVATE_KEY }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: atls/kmp/.github/actions/version@master
+        if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
+        with:
+          appId: ${{ vars.ATLANTIS_SUPER_BOT_APP_ID }}
+          appSecret: ${{ secrets.ATLANTIS_SUPER_BOT_PRIVATE_KEY }}
 
   publish:
     needs: version
-    uses: atls/kmp/.github/workflows/reusable/publish/workflow.yml@master
-    permissions: write-all
-    with:
-      appId: ${{ vars.ATLANTIS_SUPER_BOT_APP_ID }}
-    secrets:
-      appSecret: ${{ secrets.ATLANTIS_SUPER_BOT_PRIVATE_KEY }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: atls/kmp/.github/actions/publish@master
+        with:
+          appId: ${{ vars.ATLANTIS_SUPER_BOT_APP_ID }}
+          appSecret: ${{ secrets.ATLANTIS_SUPER_BOT_PRIVATE_KEY }}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
 
   release:
     needs: [publish, version]
-    uses: atls/kmp/.github/workflows/reusable/release/workflow.yml@master
-    permissions: write-all
-    with:
-      appId: ${{ vars.ATLANTIS_SUPER_BOT_APP_ID }}
-    secrets:
-      appSecret: ${{ secrets.ATLANTIS_SUPER_BOT_PRIVATE_KEY }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: atls/kmp/.github/actions/release@master
+        with:
+          appId: ${{ vars.ATLANTIS_SUPER_BOT_APP_ID }}
+          appSecret: ${{ secrets.ATLANTIS_SUPER_BOT_PRIVATE_KEY }}
