@@ -96,14 +96,15 @@ publishing {
     }
 }
 
+
 nexusPublishing {
-  repositories {
-    sonatype {
-      stagingProfileId = project.findProperty("stagingProfileId") ?: ""
-      username = sonataUsername
-      password = sonataPassword
-      nexusUrl.set(uri("https://s01.oss.sonatype.org/service/local/"))
-      snapshotRepositoryUrl.set(uri("https://s01.oss.sonatype.org/content/repositories/snapshots/"))
+    repositories {
+        sonatype {
+            stagingProfileId.set(project.findProperty("stagingProfileId")?.toString() ?: "")
+            username.set(project.findProperty("sonataUsername")?.toString())
+            password.set(project.findProperty("sonataPassword")?.toString())
+            nexusUrl.set(uri("https://s01.oss.sonatype.org/service/local/"))
+            snapshotRepositoryUrl.set(uri("https://s01.oss.sonatype.org/content/repositories/snapshots/"))
+        }
     }
-  }
 }
