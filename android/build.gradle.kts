@@ -6,6 +6,8 @@ plugins {
 group = "com.atls.plugins"
 version = "1.0.0"
 
+apply(from = rootProject.file("publishing.gradle.kts"))
+
 repositories {
     google()
     mavenCentral()
