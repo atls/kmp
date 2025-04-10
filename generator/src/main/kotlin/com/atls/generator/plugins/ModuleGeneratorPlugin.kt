@@ -5,9 +5,12 @@ import com.atls.generator.kmp.GenerateKmpModuleTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
+const val kmpTask = "generateKmpModule"
+const val composeTask = "generateComposeModule"
+
 class ModuleGeneratorPlugin : Plugin<Project> {
     override fun apply(project: Project) {
-        project.tasks.register("generateKmpModule", GenerateKmpModuleTask::class.java)
-        project.tasks.register("generateComposeModule", GenerateComposeModuleTask::class.java)
+        project.tasks.register(kmpTask, GenerateKmpModuleTask::class.java)
+        project.tasks.register(composeTask, GenerateComposeModuleTask::class.java)
     }
 }
