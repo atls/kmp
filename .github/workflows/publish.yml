@@ -2,13 +2,13 @@ name: Patch version, publish to GitHubPackages and create new GitHub release
 
 on:
   pull_request:
-    types:
-      - closed
-    branches:
-      - master
-    paths-ignore:
-      - ".github/**"
-  workflow_dispatch:
+  #   types:
+  #     - closed
+  #   branches:
+  #     - master
+  #   paths-ignore:
+  #     - ".github/**"
+  # workflow_dispatch:
 
 jobs:
   version:
