@@ -1,6 +1,7 @@
 plugins {
     `maven-publish`
     `kotlin-dsl`
+    id("io.github.gradle-nexus.publish-plugin") version "2.0.0"
 }
 
 version = "1.0.3"
@@ -93,4 +94,16 @@ publishing {
             }
         }
     }
+}
+
+nexusPublishing {
+  repositories {
+    sonatype {
+      stagingProfileId = project.findProperty("stagingProfileId") ?: ""
+      username = sonataUsername
+      password = sonataPassword
+      nexusUrl.set(uri("https://s01.oss.sonatype.org/service/local/"))
+      snapshotRepositoryUrl.set(uri("https://s01.oss.sonatype.org/content/repositories/snapshots/"))
+    }
+  }
 }
