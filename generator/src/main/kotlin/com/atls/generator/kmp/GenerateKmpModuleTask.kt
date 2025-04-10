@@ -1,21 +1,21 @@
 package com.atls.generator.kmp
 
-import org.gradle.api.DefaultTask
+import com.atls.generator.BaseGeneratorTask
 import org.gradle.api.tasks.TaskAction
 
-abstract class GenerateKmpModuleTask : DefaultTask() {
+abstract class GenerateKmpModuleTask : BaseGeneratorTask() {
+
     init {
         group = "generator"
-        description = "Generates a new kmp module"
+        description = "Generates a new KMP module"
     }
 
     @TaskAction
     fun generate() {
-        val moduleName = project.findProperty("moduleName") as? String
-            ?: error("Specify -PmoduleName=<name>")
-        val organization = project.findProperty("organization") as? String
-            ?: error("Specify -Porganization=<org>")
-
-        KmpModuleGenerator(project, moduleName, organization).generate()
+        KmpModuleGenerator(
+            project = project,
+            moduleName = moduleName.get(),
+            organization = organization.get()
+        ).generate()
     }
 }

@@ -1,21 +1,21 @@
 package com.atls.generator.compose
 
-import org.gradle.api.DefaultTask
+import com.atls.generator.BaseGeneratorTask
 import org.gradle.api.tasks.TaskAction
 
-abstract class GenerateComposeModuleTask : DefaultTask() {
+abstract class GenerateComposeModuleTask : BaseGeneratorTask() {
+
     init {
         group = "generator"
-        description = "Generates a new compose module"
+        description = "Generates a new Compose module"
     }
 
     @TaskAction
     fun generate() {
-        val moduleName = project.findProperty("moduleName") as? String
-            ?: error("Specify -PmoduleName=<name>")
-        val organization = project.findProperty("organization") as? String
-            ?: error("Specify -Porganization=<org>")
-        
-        ComposeModuleGenerator(project, moduleName, organization).generate()
+        ComposeModuleGenerator(
+            project = project,
+            moduleName = moduleName.get(),
+            organization = organization.get()
+        ).generate()
     }
 }
