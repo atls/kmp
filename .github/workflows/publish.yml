@@ -1,0 +1,39 @@
+name: Patch version, publish to GitHubPackages and create new GitHub release
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - master
+    paths-ignore:
+      - ".github/**"
+  workflow_dispatch:
+
+jobs:
+  version:
+    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
+    uses: atls/kmp/.github/workflows/reusable/version/workflow.yml@master
+    permissions: write-all
+    with:
+      appId: ${{ vars.ATLANTIS_SUPER_BOT_APP_ID }}
+    secrets:
+      appSecret: ${{ secrets.ATLANTIS_SUPER_BOT_PRIVATE_KEY }}
+
+  publish:
+    needs: version
+    uses: atls/kmp/.github/workflows/reusable/publish/workflow.yml@master
+    permissions: write-all
+    with:
+      appId: ${{ vars.ATLANTIS_SUPER_BOT_APP_ID }}
+    secrets:
+      appSecret: ${{ secrets.ATLANTIS_SUPER_BOT_PRIVATE_KEY }}
+
+  release:
+    needs: [publish, version]
+    uses: atls/kmp/.github/workflows/reusable/release/workflow.yml@master
+    permissions: write-all
+    with:
+      appId: ${{ vars.ATLANTIS_SUPER_BOT_APP_ID }}
+    secrets:
+      appSecret: ${{ secrets.ATLANTIS_SUPER_BOT_PRIVATE_KEY }}
