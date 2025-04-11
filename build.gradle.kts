@@ -1,7 +1,6 @@
 plugins {
     `maven-publish`
     `kotlin-dsl`
-    id("io.github.gradle-nexus.publish-plugin") version "2.0.0"
 }
 
 allprojects {
