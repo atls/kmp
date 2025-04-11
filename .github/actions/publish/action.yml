@@ -34,10 +34,7 @@ runs:
         GITHUB_USER: ${{ github.repository_owner }}
         GITHUB_REPO: ${{ github.repository }}
       run: |
-        # ./gradlew publishMultiplatformPublicationToGitHubPackagesRepository
-
-        # ./gradlew :android:publish --no-configuration-cache
-
-        ./gradlew :android:publishAllPublicationsToGitHubPackagesRepository
-        # ./gradlew :android:publishPluginMavenPublicationToGitHubPackagesRepository
-        # ./gradlew :android:publishAndroidPluginPluginMarkerMavenPublicationToGitHubPackagesRepository
+        ./gradlew :ios:publishAllPublicationsToGitHubPackagesRepository
+        # ./gradlew :android:publishAllPublicationsToGitHubPackagesRepository
+        ./gradlew :compose:publishAllPublicationsToGitHubPackagesRepository
+        ./gradlew :multiplatform:publishAllPublicationsToGitHubPackagesRepository
