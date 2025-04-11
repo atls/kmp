@@ -20,7 +20,7 @@ jobs:
       targetRepository: rees46/kmp
       targetOrganization: rees46
       syncIgnore: ".git,.idea"
-      replacementExtentions: "*.kts,*.kt"
+      replacementExtentions: "*.kts,*.kt,*.yml,*.yaml"
       replacementContents: "atls|rees46"
       sourceDirname: atls
       targetDirname: rees46
