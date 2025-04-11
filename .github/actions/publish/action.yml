@@ -35,4 +35,9 @@ runs:
         GITHUB_REPO: ${{ github.repository }}
       run: |
         # ./gradlew publishMultiplatformPublicationToGitHubPackagesRepository
-        ./gradlew :android:publish --no-configuration-cache
+
+        # ./gradlew :android:publish --no-configuration-cache
+
+        ./gradlew :android:publishAllPublicationsToGitHubPackagesRepository
+        # ./gradlew :android:publishPluginMavenPublicationToGitHubPackagesRepository
+        # ./gradlew :android:publishAndroidPluginPluginMarkerMavenPublicationToGitHubPackagesRepository
