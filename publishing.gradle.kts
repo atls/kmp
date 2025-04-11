@@ -3,7 +3,8 @@ plugins.withId("maven-publish") {
         repositories {
             maven {
                 name = "GitHubPackages"
-                url = uri("https://maven.pkg.github.com/atls/convention-plugins")
+                // url = uri("https://maven.pkg.github.com/atls/convention-plugins")
+                url = uri("https://maven.pkg.github.com/atls/kts")
                 credentials {
                     username = project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_ACTOR")
                     password = project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_TOKEN")
