@@ -4,7 +4,7 @@ plugins {
     `maven-publish`
 }
 group = "com.atls.plugins"
-version = "1.0.0"
+version = "1.0.1"
 
 apply(from = rootProject.file("publishing.gradle.kts"))
 
