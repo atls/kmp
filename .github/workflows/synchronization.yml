@@ -19,8 +19,8 @@ jobs:
       appId: ${{ vars.REES46_PUBLISHER_ID }}
       targetRepository: rees46/kmp
       targetOrganization: rees46
-      syncIgnore: ".git,.idea,.github"
-      replacementExtentions: "*.kts,*.kt"
+      syncIgnore: ".git,.idea"
+      replacementExtentions: "*.kts,*.kt,*.yml,*.yaml"
       replacementContents: "atls|rees46"
       sourceDirname: atls
       targetDirname: rees46

@@ -37,7 +37,7 @@ runs:
       env:
         FILE_PATH: ./build.gradle.kts
       run: |
-        version=$(grep -o "version='[^']*'" $FILE_PATH | head -1 | cut -d"'" -f2)
+        version=$(grep -oP '^\s*version\s*=\s*"\K[^"]+' $FILE_PATH | head -1)
         echo "versionName=$version" >> $GITHUB_ENV
         echo "versionName=$version" >> $GITHUB_OUTPUT
 
