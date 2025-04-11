@@ -14,7 +14,7 @@ jobs:
   version:
     runs-on: ubuntu-latest
     steps:
-      - uses: atls/kmp/.github/actions/version@master
+      - uses: atls/kmp/.github/actions/version@fix/version-action
         # if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
         with:
           appId: ${{ vars.ATLANTIS_SUPER_BOT_APP_ID }}
