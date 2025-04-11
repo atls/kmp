@@ -34,4 +34,7 @@ runs:
         GITHUB_USER: ${{ github.repository_owner }}
         GITHUB_REPO: ${{ github.repository }}
       run: |
-        ./gradlew publishMultiplatformPublicationToGitHubPackagesRepository
+        ./gradlew :ios:publishAllPublicationsToGitHubPackagesRepository
+        ./gradlew :android:publishAllPublicationsToGitHubPackagesRepository
+        ./gradlew :compose:publishAllPublicationsToGitHubPackagesRepository
+        ./gradlew :multiplatform:publishAllPublicationsToGitHubPackagesRepository
