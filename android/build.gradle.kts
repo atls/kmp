@@ -3,8 +3,6 @@ plugins {
     `java-gradle-plugin`
     `maven-publish`
 }
-group = "com.atls.plugins"
-version = "1.0.1"
 
 apply(from = rootProject.file("publishing.gradle.kts"))
 
