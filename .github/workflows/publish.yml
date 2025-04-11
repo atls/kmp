@@ -2,26 +2,27 @@ name: Patch version, publish to GitHubPackages and create new GitHub release
 
 on:
   pull_request:
-    types:
-      - closed
-    branches:
-      - master
-    paths-ignore:
-      - ".github/**"
-  workflow_dispatch:
+  # pull_request:
+  #   types:
+  #     - closed
+  #   branches:
+  #     - master
+  #   paths-ignore:
+  #     - ".github/**"
+  # workflow_dispatch:
 
 jobs:
-  version:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: atls/kmp/.github/actions/version@master
-        if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
-        with:
-          appId: ${{ vars.ATLANTIS_SUPER_BOT_APP_ID }}
-          appSecret: ${{ secrets.ATLANTIS_SUPER_BOT_PRIVATE_KEY }}
+  # version:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: atls/kmp/.github/actions/version@master
+  #       if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
+  #       with:
+  #         appId: ${{ vars.ATLANTIS_SUPER_BOT_APP_ID }}
+  #         appSecret: ${{ secrets.ATLANTIS_SUPER_BOT_PRIVATE_KEY }}
 
   publish:
-    needs: version
+    # needs: version
     runs-on: ubuntu-latest
     steps:
       - uses: atls/kmp/.github/actions/publish@master
@@ -30,11 +31,11 @@ jobs:
           appSecret: ${{ secrets.ATLANTIS_SUPER_BOT_PRIVATE_KEY }}
           githubToken: ${{ secrets.GITHUB_TOKEN }}
 
-  release:
-    needs: [publish, version]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: atls/kmp/.github/actions/release@master
-        with:
-          appId: ${{ vars.ATLANTIS_SUPER_BOT_APP_ID }}
-          appSecret: ${{ secrets.ATLANTIS_SUPER_BOT_PRIVATE_KEY }}
+  # release:
+  #   needs: [publish, version]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: atls/kmp/.github/actions/release@master
+  #       with:
+  #         appId: ${{ vars.ATLANTIS_SUPER_BOT_APP_ID }}
+  #         appSecret: ${{ secrets.ATLANTIS_SUPER_BOT_PRIVATE_KEY }}
