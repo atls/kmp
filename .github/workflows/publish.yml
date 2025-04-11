@@ -25,7 +25,8 @@ jobs:
     # needs: version
     runs-on: ubuntu-latest
     steps:
-      - uses: atls/kmp/.github/actions/publish@master
+      # - uses: atls/kmp/.github/actions/publish@master
+      - uses: atls/kmp/.github/actions/publish@refactor/workflows
         with:
           appId: ${{ vars.ATLANTIS_SUPER_BOT_APP_ID }}
           appSecret: ${{ secrets.ATLANTIS_SUPER_BOT_PRIVATE_KEY }}
