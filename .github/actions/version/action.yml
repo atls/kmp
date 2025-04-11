@@ -41,13 +41,13 @@ runs:
         echo "versionName=$version" >> $GITHUB_ENV
         echo "versionName=$version" >> $GITHUB_OUTPUT
 
-    # - name: Commit changes
-    #   id: committer
-    #   uses: planetscale/ghcommit-action@v0.1.44
-    #   env:
-    #     GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
-    #   with:
-    #     repo: ${{ github.repository }}
-    #     branch: master
-    #     commit_message: "chore(common): version bump to ${{ steps.versionName.outputs.versionName }}"
-    #     file_pattern: "personalization-sdk"
+    - name: Commit changes
+      id: committer
+      uses: planetscale/ghcommit-action@v0.1.44
+      env:
+        GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+      with:
+        repo: ${{ github.repository }}
+        branch: master
+        commit_message: "chore(common): version bump to ${{ steps.versionName.outputs.versionName }}"
+        file_pattern: "personalization-sdk"
