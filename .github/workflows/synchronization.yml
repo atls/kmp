@@ -21,7 +21,7 @@ jobs:
       targetOrganization: rees46
       syncIgnore: ".git,.idea,.github/workflows/synchronization.yml,.github/ISSUE_TEMPLATE"
       replacementExtentions: "*.kts,*.kt,*.yml,*.yaml"
-      replacementContents: "ATLANTIS_SUPER_BOT_APP_I|PUBLIVERSIONER_ID,ATLANTIS_SUPER_BOT_PRIVATE_KEY|PUBLIVERSIONER_SECRET,atls|rees46"
+      replacementContents: "ATLANTIS_SUPER_BOT_APP_ID|PUBLIVERSIONER_ID,ATLANTIS_SUPER_BOT_PRIVATE_KEY|PUBLIVERSIONER_SECRET,atls|rees46"
       sourceDirname: atls
       targetDirname: rees46
     secrets:
