@@ -38,6 +38,7 @@ runs:
         FILE_PATH: ./build.gradle.kts
       run: |
         version=$(grep -oP '^\s*version\s*=\s*"\K[^"]+' $FILE_PATH | head -1)
+        echo $version
         echo "versionName=$version" >> $GITHUB_ENV
         echo "versionName=$version" >> $GITHUB_OUTPUT
 
@@ -50,4 +51,4 @@ runs:
         repo: ${{ github.repository }}
         branch: master
         commit_message: "chore(common): version bump to ${{ steps.versionName.outputs.versionName }}"
-        file_pattern: "personalization-sdk"
+        file_pattern: "./build.gradle.kts"
