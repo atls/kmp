@@ -26,6 +26,8 @@ runs:
       uses: actions/checkout@v4
       with:
         token: ${{ steps.app-token.outputs.token }}
+        ref: master
+        fetch-depth: 0
 
     - name: publish
       shell: bash
