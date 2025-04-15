@@ -19,7 +19,7 @@ jobs:
       appId: ${{ vars.REES46_PUBLISHER_ID }}
       targetRepository: rees46/kmp
       targetOrganization: rees46
-      syncIgnore: ".git,.idea,.github/workflows/synchronization.yml,.github/ISSUE_TEMPLATE"
+      syncIgnore: ".git,.idea,.github"
       replacementExtentions: "*.kts,*.kt,*.yml,*.yaml"
       replacementContents: "ATLANTIS_SUPER_BOT_APP_ID|PUBLIVERSIONER_ID,ATLANTIS_SUPER_BOT_PRIVATE_KEY|PUBLIVERSIONER_SECRET,atls|rees46"
       sourceDirname: atls
