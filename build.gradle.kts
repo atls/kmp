@@ -21,7 +21,7 @@ repositories {
 
 allprojects {
   group = "com.atls"
-  version = "1.0.3"
+  version = "1.0.4"
 
   apply(plugin = "maven-publish")
   apply(plugin = "signing")
