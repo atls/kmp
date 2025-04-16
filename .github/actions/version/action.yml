@@ -30,6 +30,11 @@ runs:
       with:
         node-version: "lts/*"
 
+    - name: Prepare semantic-release enveronment
+      shell: bash
+      run: |
+        npm install -g @semantic-release/exec
+
     - name: Release
       shell: bash
       env:
