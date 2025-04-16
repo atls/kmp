@@ -39,7 +39,8 @@ runs:
       shell: bash
       env:
         GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
-      run: npx semantic-release
+      # run: npx semantic-release
+      run: npx semantic-release -d
 
     # - name: Bump version
     #   shell: bash
