@@ -12,11 +12,10 @@
           "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}",
         },
       ],
-      ["@semantic-release/github", { "pullRequests": true }],
       [
         "@semantic-release/exec",
         {
-          "prepare": "./gradlew updateVersion -PnewVersion=${nextRelease.version}",
+          "prepare": "./gradlew updateVersion -PnewVersion=${nextRelease.version} --no-configuration-cache",
         },
       ],
     ],
