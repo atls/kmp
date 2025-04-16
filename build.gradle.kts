@@ -104,6 +104,12 @@ subprojects {
   }
 }
 
+tasks.register("printVersion") {
+    doLast {
+        println(version)
+    }
+}
+
 tasks.register("bumpPatchVersion") {
   doNotTrackState("Modifies build files")
 
