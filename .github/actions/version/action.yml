@@ -34,7 +34,7 @@ runs:
     - name: Prepare semantic-release enveronment
       shell: bash
       run: |
-        npm install @semantic-release/exec -D
+        npm install @semantic-release/exec @semantic-release/git @semantic-release/github -D
 
     - name: Release
       shell: bash
