@@ -1,5 +1,5 @@
-# { "branches": ["master"], "plugins": [
 {
+  # "branches": ["master"],
   "branches": ["refactor/version"],
   "plugins":
     [
@@ -15,7 +15,7 @@
       [
         "@semantic-release/exec",
         {
-          "prepare": "./gradlew updateVersion -PnewVersion=${nextRelease.version} --no-configuration-cache",
+          "prepareCmd": "./gradlew updateVersion -PnewVersion=${nextRelease.version} --no-configuration-cache",
         },
       ],
     ],
