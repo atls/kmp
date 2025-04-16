@@ -34,14 +34,13 @@ runs:
     - name: Prepare semantic-release enveronment
       shell: bash
       run: |
-        npm install -g @semantic-release/exec
+        npm install @semantic-release/exec -D
 
     - name: Release
       shell: bash
       env:
         GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
-      # run: npx semantic-release
-      run: npx semantic-release -d
+      run: npx semantic-release
 
     # - name: Bump version
     #   shell: bash
