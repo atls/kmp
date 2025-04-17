@@ -29,7 +29,7 @@ runs:
 
     - uses: codfish/semantic-release-action@v3
       with:
-        extends: ["@semantic-release/git", "@semantic-release/exec"]
+        additional-packages: ["@semantic-release/git", "@semantic-release/exec"]
       # with:
       #   branches: ["refactor/version"]
       #   plugins: |
