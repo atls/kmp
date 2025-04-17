@@ -1,6 +1,5 @@
 {
-  # "branches": ["master"],
-  "branches": ["refactor/version"],
+  "branches": ["master"],
   "plugins":
     [
       "@semantic-release/commit-analyzer",
