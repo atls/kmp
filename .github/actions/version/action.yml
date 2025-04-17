@@ -32,6 +32,7 @@ runs:
         additional-packages: |
           @semantic-release/git
           @semantic-release/exec
+          # @semantic-release/exec
 
       # with:
       #   branches: ["refactor/version"]
