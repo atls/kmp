@@ -4,6 +4,7 @@ on:
   pull_request:
     branches-ignore:
       - "release/**"
+      - "release/*"
   # TODO uncomment
   #   types:
   #     - closed
