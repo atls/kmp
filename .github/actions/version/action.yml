@@ -32,26 +32,13 @@ runs:
         additional-packages: |
           ['@semantic-release/git', '@semantic-release/exec']
 
-      # with:
-      #   branches: ["refactor/version"]
-      #   plugins: |
-      #     [
-      #       "@semantic-release/commit-analyzer",
-      #       "@semantic-release/release-notes-generator",
-      #       [
-      #         "@semantic-release/git",
-      #         {
-      #           "assets": ["version.properties"],
-      #           "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}",
-      #         },
-      #       ],
-      #       [
-      #         "@semantic-release/exec",
-      #         {
-      #           "prepareCmd": "./gradlew updateVersion -PnewVersion=${nextRelease.version} --no-configuration-cache",
-      #         },
-      #       ],
-      #     ]
+    - name: NEW_RELEASE_PUBLISHED check
+      shell: bash
+      run: |
+        if [ "${NEW_RELEASE_PUBLISHED}" != "true" ]; then
+          echo "New release not published, exit"
+          exit 1
+        fi
 
     - name: Retrieve version
       shell: bash
