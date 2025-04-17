@@ -25,21 +25,27 @@ runs:
         token: ${{ steps.app-token.outputs.token }}
         ref: master
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: "lts/*"
-
-    - name: Prepare semantic-release enveronment
-      shell: bash
-      run: |
-        npm install @semantic-release/exec @semantic-release/git @semantic-release/github -D
-
-    - name: Release
-      shell: bash
-      env:
-        GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
-      run: npx semantic-release
+    - uses: codfish/semantic-release-action@v3
+      # with:
+      #   branches: ["refactor/version"]
+      #   plugins: |
+      #     [
+      #       "@semantic-release/commit-analyzer",
+      #       "@semantic-release/release-notes-generator",
+      #       [
+      #         "@semantic-release/git",
+      #         {
+      #           "assets": ["version.properties"],
+      #           "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}",
+      #         },
+      #       ],
+      #       [
+      #         "@semantic-release/exec",
+      #         {
+      #           "prepareCmd": "./gradlew updateVersion -PnewVersion=${nextRelease.version} --no-configuration-cache",
+      #         },
+      #       ],
+      #     ]
 
     - name: Retrieve version
       shell: bash
