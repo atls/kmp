@@ -63,6 +63,8 @@ runs:
     - name: Create new branch
       id: newBranchNameStep
       shell: bash
+      env:
+        GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
       run: |
         branch=release/${{ steps.versionNameStep.outputs.versionName }}
         echo "branchName=$branch" >> $GITHUB_OUTPUT
