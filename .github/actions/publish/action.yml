@@ -16,27 +16,26 @@ runs:
   using: composite
 
   steps:
-    - uses: actions/create-github-app-token@v1
-      id: app-token
-      with:
-        app-id: ${{ inputs.appId }}
-        private-key: ${{ inputs.appSecret }}
-
-    - name: Checkout
-      uses: actions/checkout@v4
-      with:
-        token: ${{ steps.app-token.outputs.token }}
-        ref: master
-        fetch-depth: 0
-
-    - name: publish
+    - name: debug
       shell: bash
-      env:
-        GITHUB_TOKEN: ${{ inputs.githubToken }}
-        GITHUB_USER: ${{ github.repository_owner }}
-        GITHUB_REPO: ${{ github.repository }}
       run: |
-        ./gradlew :ios:publishAllPublicationsToGitHubPackagesRepository
-        ./gradlew :android:publishAllPublicationsToGitHubPackagesRepository
-        ./gradlew :compose:publishAllPublicationsToGitHubPackagesRepository
-        ./gradlew :multiplatform:publishAllPublicationsToGitHubPackagesRepository
+        echo "wofklow triggered"
+
+    # - name: Checkout
+    #   uses: actions/checkout@v4
+    #   with:
+    #     token: ${{ steps.app-token.outputs.token }}
+    #     ref: master
+    #     fetch-depth: 0
+    #
+    # - name: publish
+    #   shell: bash
+    #   env:
+    #     GITHUB_TOKEN: ${{ inputs.githubToken }}
+    #     GITHUB_USER: ${{ github.repository_owner }}
+    #     GITHUB_REPO: ${{ github.repository }}
+    #   run: |
+    #     ./gradlew :ios:publishAllPublicationsToGitHubPackagesRepository
+    #     ./gradlew :android:publishAllPublicationsToGitHubPackagesRepository
+    #     ./gradlew :compose:publishAllPublicationsToGitHubPackagesRepository
+    #     ./gradlew :multiplatform:publishAllPublicationsToGitHubPackagesRepository
