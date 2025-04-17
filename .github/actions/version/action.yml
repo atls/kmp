@@ -89,7 +89,7 @@ runs:
       with:
         repo: ${{ github.repository }}
         branch: ${{ steps.newBranchNameStep.outputs.branchName }}
-        commit_message: "chore(common): version bump to ${{ steps.versionNameStep.outputs.versionName }}"
+        commit_message: "chore(common): version bump to ${{ steps.versionNameStep.outputs.versionName }} [skip ci]"
         file_pattern: "version.properties"
 
     - name: Create Pull Request
