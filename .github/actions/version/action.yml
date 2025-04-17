@@ -61,6 +61,7 @@ runs:
         echo "versionName=$version" >> $GITHUB_OUTPUT
 
     - name: Create new branch
+      id: newBranchNameStep
       shell: bash
       run: |
         branch=release/${{ steps.versionNameStep.outputs.versionName }}
