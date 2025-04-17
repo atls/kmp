@@ -23,24 +23,48 @@ runs:
       uses: actions/checkout@v4
       with:
         token: ${{ steps.app-token.outputs.token }}
-        branch: master
+        ref: master
 
-    - name: Bump version
+    - uses: codfish/semantic-release-action@v3
+      with:
+        additional-packages: |
+          ['@semantic-release/git', '@semantic-release/exec']
+
+    - name: NEW_RELEASE_PUBLISHED check
       shell: bash
-      id: version
       run: |
-        ./gradlew bumpPatchVersion --no-configuration-cache
+        if [ "${NEW_RELEASE_PUBLISHED}" != "true" ]; then
+          echo "New release not published, exit"
+          exit 1
+        fi
 
     - name: Retrieve version
       shell: bash
-      id: versionName
-      env:
-        FILE_PATH: ./build.gradle.kts
+      id: versionNameStep
       run: |
-        version=$(grep -oP '^\s*version\s*=\s*"\K[^"]+' $FILE_PATH | head -1)
-        echo $version
-        echo "versionName=$version" >> $GITHUB_ENV
+        version=$(./gradlew -q printVersion --no-configuration-cache)
         echo "versionName=$version" >> $GITHUB_OUTPUT
+
+    - name: Create new branch
+      id: newBranchNameStep
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+      run: |
+        branch=release/${{ steps.versionNameStep.outputs.versionName }}
+        echo "branchName=$branch" >> $GITHUB_OUTPUT
+        git checkout -b $branch
+        git push --set-upstream origin $branch
+
+    - name: Get last merged PR author login
+      shell: bash
+      id: pr_author
+      env:
+        GH_TOKEN: ${{ steps.app-token.outputs.token }}
+      run: |
+        PR_NUMBER=$(gh pr list --state merged --limit 1 --json number --jq '.[0].number')
+        LAST_PR_AUTHOR=$(gh pr view $PR_NUMBER --json author --jq '.author.login')
+        echo "lastPrAuthor=$LAST_PR_AUTHOR" >> $GITHUB_OUTPUT
 
     - name: Commit changes
       id: committer
@@ -49,6 +73,23 @@ runs:
         GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
       with:
         repo: ${{ github.repository }}
-        branch: master
-        commit_message: "chore(common): version bump to ${{ steps.versionName.outputs.versionName }}"
-        file_pattern: "./build.gradle.kts"
+        branch: ${{ steps.newBranchNameStep.outputs.branchName }}
+        commit_message: "chore(common): version bump to ${{ steps.versionNameStep.outputs.versionName }}"
+        file_pattern: "version.properties"
+
+    - name: Create Pull Request
+      shell: bash
+      working-directory: ${{ inputs.targetDirectory }}
+      env:
+        GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+        BRANCH_NAME: ${{ steps.newBranchNameStep.outputs.branchName }}
+        LAST_PR_AUTHOR: ${{ steps.pr_author.outputs.lastPrAuthor }}
+        # TODO change it
+        REVIEWER: iwwwanow
+      run: |
+        PR_TITLE="Automated release"
+        PR_BODY="This is an automated pull request to update from branch $BRANCH_NAME"
+        DEFAULT_BRANCH=$(gh repo view --json defaultBranchRef -q ".defaultBranchRef.name")
+        echo "Assigning PR to LAST_PR_AUTHOR: $LAST_PR_AUTHOR"
+        echo "Adding REVIEWER: $REVIEWER as a reviewer"
+        gh pr create --title "$PR_TITLE" --body "$PR_BODY" --base "$DEFAULT_BRANCH" --head $BRANCH_NAME --assignee $LAST_PR_AUTHOR --reviewer $REVIEWER

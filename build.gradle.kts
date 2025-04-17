@@ -19,9 +19,12 @@ repositories {
   maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
 }
 
+val versionFile = file("version.properties")
+val projectVersion = versionFile.readText().substringAfter("version=").trim()
+
 allprojects {
   group = "com.atls"
-  version = "1.0.4"
+  version = projectVersion
 
   apply(plugin = "maven-publish")
   apply(plugin = "signing")
@@ -104,22 +107,24 @@ subprojects {
   }
 }
 
-tasks.register("bumpPatchVersion") {
-  doNotTrackState("Modifies build files")
+tasks.register("printVersion") {
+    doLast {
+        println(version)
+    }
+}
 
-  doLast {
-    val (major, minor, patch) = version.toString().split(".").map { it.toInt() }
-    val newVersion = "$major.$minor.${patch + 1}"
-
-    val buildFile = file("build.gradle.kts")
-    val content =
-        buildFile
-            .readText()
-            .replace(Regex("version\\s*=\\s*[\"']$version[\"']"), "version = \"$newVersion\"")
-
-    buildFile.writeText(content)
-    println("Version updated from $version to $newVersion")
-  }
+tasks.register("updateVersion") {
+    doLast {
+        val newVersion = project.property("newVersion") as String
+        
+        file("version.properties").writeText("version=$newVersion")
+        
+        allprojects {
+            version = newVersion
+        }
+        
+        println("Version updated to $newVersion")
+    }
 }
 
 nexusPublishing {

@@ -1,21 +1,22 @@
-name: Publish
+name: Bump version
 
 on:
   pull_request:
     types:
       - closed
     branches:
-      - "release/**"
+      - master
+      - "!release/**"
+    paths-ignore:
+      - ".github/**"
   workflow_dispatch:
 
 jobs:
-  publish:
-    needs: version
+  version:
     runs-on: ubuntu-latest
     steps:
-      - uses: atls/kmp/.github/actions/publish@master
+      - uses: atls/kmp/.github/actions/version@master
         if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
         with:
           appId: ${{ vars.ATLANTIS_SUPER_BOT_APP_ID }}
           appSecret: ${{ secrets.ATLANTIS_SUPER_BOT_PRIVATE_KEY }}
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
