@@ -11,7 +11,8 @@ on:
 
 jobs:
   prepare:
-    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
+    # TODO uncomment
+    # if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     outputs:
       replacements: ${{ steps.getReplacementsStep.outputs.replacements }}
@@ -23,8 +24,9 @@ jobs:
 
   repoSync:
     needs: prepare
-    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
-    # uses: atls/shared/.github/workflows/reusable-repo-sync.yml@master
+    # TODO uncomment
+    # if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
+    # uses: atls/shared/.github/workflows/repo-sync.yaml@master
     uses: atls/shared/.github/workflows/repo-sync.yaml@feat/repo-sync
     secrets:
       appSecret: ${{ secrets.PERSONACLICK_COURIER_SECRET }}
