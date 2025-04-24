@@ -29,9 +29,9 @@ jobs:
     # uses: atls/shared/.github/workflows/repo-sync.yaml@master
     uses: atls/shared/.github/workflows/repo-sync.yaml@feat/repo-sync
     secrets:
-      appSecret: ${{ secrets.PERSONACLICK_COURIER_SECRET }}
+      appSecret: ${{ secrets.PUBLIVERSIONER_SECRET }}
     with:
-      appId: ${{ vars.PERSONACLICK_COURIER_ID }}
+      appId: ${{ vars.PUBLIVERSIONER_ID }}
       replacements: ${{ needs.prepare.outputs.replacements }}
       repositoryOwner: rees46
       reviewerUsername: iwwwanow
