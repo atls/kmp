@@ -1,6 +1,7 @@
 deletions:
   - .github/workflows/repo-sync.yaml
   - .github/workflows/constants/replacements.yml
+  - .github/ISSUE_TEMPLATE
 ignore:
   - version.properties
 replacements:
