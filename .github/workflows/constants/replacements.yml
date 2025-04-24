@@ -1,0 +1,12 @@
+deletions:
+  - .github/workflows/repo-sync.yaml
+  - .github/workflows/constants/replacements.yml
+ignore:
+  - version.properties
+replacements:
+  - from: "ATLANTIS_SUPER_BOT_APP_ID"
+    to: "PUBLIVERSIONER_ID"
+  - from: "ATLANTIS_SUPER_BOT_PRIVATE_KEY"
+    to: "PUBLIVERSIONER_SECRET"
+  - from: "atls"
+    to: "rees46"
