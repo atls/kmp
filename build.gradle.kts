@@ -20,7 +20,7 @@ repositories {
 }
 
 val versionFile = file("version.properties")
-val projectVersion = versionFile.readText().substringAfter("version=").trim()
+val projectVersion = versionFile.readText().substringAfter("VERSION_NAME=").trim()
 
 allprojects {
   group = "com.atls"
