@@ -14,7 +14,7 @@ jobs:
     permissions: write-all
     runs-on: ubuntu-latest
     steps:
-      - uses: atls/kmp/.github/actions/publish@master
+      - uses: atls/kmp/.github/actions/publish@33ddff7a7843107fb1667d7681ed3da27f0a0741
         if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
         with:
           appId: ${{ vars.ATLANTIS_SUPER_BOT_APP_ID }}
