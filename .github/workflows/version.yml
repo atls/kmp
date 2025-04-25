@@ -1,22 +1,21 @@
 name: Bump version
 
 on:
-  pull_request:
-    types:
-      - closed
+  push:
     branches:
       - master
-      - "!release/**"
     paths-ignore:
       - ".github/**"
+      - "version.properties"
   workflow_dispatch:
 
 jobs:
-  version:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: atls/kmp/.github/actions/version@master
-        if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
-        with:
-          appId: ${{ vars.ATLANTIS_SUPER_BOT_APP_ID }}
-          appSecret: ${{ secrets.ATLANTIS_SUPER_BOT_PRIVATE_KEY }}
+  bump-version:
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true && !startsWith(github.event.pull_request.head.ref, 'release/'))
+    uses: atls/shared/.github/workflows/version.yaml@master
+    permissions: write-all
+    secrets:
+      appSecret: ${{ secrets.ATLANTIS_SUPER_BOT_PRIVATE_KEY }}
+    with:
+      appId: ${{ vars.ATLANTIS_SUPER_BOT_APP_ID }}
+      reviewerUsername: iwwwanow
