@@ -14,7 +14,9 @@
       [
         "@semantic-release/exec",
         {
-          "prepareCmd": "./gradlew updateVersion -PnewVersion=${nextRelease.version} --no-configuration-cache",
+          {
+            "prepareCmd": "./scripts/update_version.sh ${nextRelease.version}",
+          },
         },
       ],
     ],
