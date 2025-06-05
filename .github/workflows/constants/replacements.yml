@@ -5,6 +5,14 @@ deletions:
 ignore:
   - version.properties
 replacements:
+  - from: "atls/kmp/.github/actions/publish"
+    to: "rees46/workflow/.github/workflows/reusable-android-publish.yaml"
+  - from: "atls/shared/.github/workflows/multiplatform-version.yaml"
+    to: "rees46/workflow/.github/workflows/reusable-multiplatform-version-bump.yaml"
+  - from: "atls/shared/.github/workflows/release-commit-finder.yaml"
+    to: "rees46/workflow/.github/workflows/reusable-release-commit-finder.yaml"
+  - from: "atls/shared"
+    to: "rees46/workflow"
   - from: "ATLANTIS_SUPER_BOT_APP_ID"
     to: "PUBLIVERSIONER_ID"
   - from: "ATLANTIS_SUPER_BOT_PRIVATE_KEY"
