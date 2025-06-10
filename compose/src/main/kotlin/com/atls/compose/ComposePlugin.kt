@@ -5,7 +5,7 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
-const val composeVersion = "1.8.0"
+const val composeVersion = "1.7.0"
 const val androidxLifecycleVersion = "2.8.4"
 
 class ComposePlugin : Plugin<Project> {
