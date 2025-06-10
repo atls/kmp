@@ -11,33 +11,26 @@ on:
   #     - master
 
 jobs:
-  # prepare:
-  #   if: github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true && startsWith(github.event.pull_request.head.ref, 'release/'))
-  #   runs-on: ubuntu-latest
-  #   outputs:
-  #     replacements: ${{ steps.getReplacementsStep.outputs.replacements }}
-  #   steps:
-  #     - uses: atls/shared/.github/actions/sync/read-replacements@master
-  #       id: getReplacementsStep
-
-  echo_job:
-    runs-on: ubuntu-latest # Выбираем операционную систему для выполнения job'а
-
+  prepare:
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true && startsWith(github.event.pull_request.head.ref, 'release/'))
+    runs-on: ubuntu-latest
+    outputs:
+      replacements: ${{ steps.getReplacementsStep.outputs.replacements }}
     steps:
-      - name: Print a message
-        run: echo "Hello from GitHub Actions!"
+      - uses: atls/shared/.github/actions/sync/read-replacements@master
+        id: getReplacementsStep
 
-  # repoSync:
-  #   # needs: prepare
-  #   # if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
-  #   # TODO uncomment
-  #   # uses: atls/shared/.github/workflows/repo-sync.yaml@master
-  #   uses: atls/shared/.github/workflows/repo-sync.yaml@refactor/workflow
-  #   secrets:
-  #     appSecret: ${{ secrets.REES46_PUBLISHER_SECRET }}
-  #   with:
-  #     appId: ${{ vars.REES46_PUBLISHER_ID }}
-  #     replacements: ${{ needs.prepare.outputs.replacements }}
-  #     repositoryOwner: rees46
-  #     reviewerUsername: iwwwanow
-  #     targetRepository: rees46/kmp
+  repoSync:
+    needs: prepare
+    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
+    # TODO uncomment
+    # uses: atls/shared/.github/workflows/repo-sync.yaml@master
+    uses: atls/shared/.github/workflows/repo-sync.yaml@refactor/workflow
+    secrets:
+      appSecret: ${{ secrets.REES46_PUBLISHER_SECRET }}
+    with:
+      appId: ${{ vars.REES46_PUBLISHER_ID }}
+      replacements: ${{ needs.prepare.outputs.replacements }}
+      repositoryOwner: rees46
+      reviewerUsername: iwwwanow
+      targetRepository: rees46/kmp
