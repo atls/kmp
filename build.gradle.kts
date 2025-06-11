@@ -87,15 +87,13 @@ allprojects {
     val signing_key: String? by project
     val signing_password: String? by project
 
-    if (gradle.taskGraph.hasTask("publish")) {
-      if (signing_key != null) {
+    if (signing_key != null) {
         useInMemoryPgpKeys(signing_keyId, signing_key, signing_password)
-      } else {
-        throw GradleException("Signing key not configured!")
-      }
-
-      sign(publishing.publications)
+    } else {
+        logger.warn("Signing key not configured - artifacts will not be signed")
     }
+
+    sign(publishing.publications)
   }
 }
 

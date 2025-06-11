@@ -1,12 +1,11 @@
 deletions:
-  - .github/workflows/repo-sync.yaml
+  - .github/workflows/repo-sync.yml
   - .github/workflows/constants/replacements.yml
   - .github/ISSUE_TEMPLATE
 ignore:
   - version.properties
+  - .github/workflows/publish.yml
 replacements:
-  - from: "atls/kmp/.github/actions/publish"
-    to: "rees46/workflow/.github/workflows/reusable-android-publish.yaml"
   - from: "atls/shared/.github/workflows/multiplatform-version.yaml"
     to: "rees46/workflow/.github/workflows/reusable-multiplatform-version-bump.yaml"
   - from: "atls/shared/.github/workflows/release-commit-finder.yaml"
