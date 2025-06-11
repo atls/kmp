@@ -6,16 +6,25 @@ on:
       - master
     paths-ignore:
       - ".github/**"
-      - "version.properties"
   workflow_dispatch:
 
 jobs:
+  find-release-commit:
+    uses: atls/shared/.github/workflows/release-commit-finder.yaml@master
+    secrets:
+      githubToken: ${{ secrets.GITHUB_TOKEN }}
+
   bump-version:
-    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true && !startsWith(github.event.pull_request.head.ref, 'release/'))
-    uses: atls/shared/.github/workflows/version.yaml@master
+    needs: find-release-commit
+    if: |
+      github.event_name == 'workflow_dispatch' || (
+        github.event_name == 'push' &&
+        needs.find-release-commit.outputs.hasCommit == 'false')
+    uses: atls/shared/.github/workflows/multiplatform-version.yaml@master
     permissions: write-all
     secrets:
       appSecret: ${{ secrets.ATLANTIS_SUPER_BOT_PRIVATE_KEY }}
+      githubToken: ${{ secrets.GITHUB_TOKEN }}
     with:
       appId: ${{ vars.ATLANTIS_SUPER_BOT_APP_ID }}
       reviewerUsername: iwwwanow
