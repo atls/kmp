@@ -3,7 +3,7 @@ plugins.withId("maven-publish") {
         repositories {
             maven {
                 name = "GitHubPackages"
-                url = uri("https://maven.pkg.github.com/rees46/kmp")
+                url = uri("https://maven.pkg.github.com/atls/kmp")
 				version = project.version.toString()
                 credentials {
                     username = project.findProperty("ossrhUsername") as String? ?: System.getenv("GITHUB_ACTOR")

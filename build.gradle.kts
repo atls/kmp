@@ -23,7 +23,7 @@ val versionFile = file("version.properties")
 val projectVersion = versionFile.readText().substringAfter("VERSION_NAME=").trim()
 
 allprojects {
-  group = "com.rees46"
+  group = "com.atls"
   version = projectVersion
 
   apply(plugin = "maven-publish")
@@ -51,9 +51,9 @@ allprojects {
         artifact(tasks["javadocJar"])
 
         pom {
-          name.set("rees46 KMP Library")
-          description.set("Kotlin Multiplatform library for rees46 e-commerce platform")
-          url.set("https://github.com/rees46/kmp")
+          name.set("atls KMP Library")
+          description.set("Kotlin Multiplatform library for atls e-commerce platform")
+          url.set("https://github.com/atls/kmp")
 
           licenses {
             license {
@@ -71,9 +71,9 @@ allprojects {
           }
 
           scm {
-            connection.set("scm:git:github.com:rees46/kmp.git")
-            developerConnection.set("scm:git:ssh://github.com:rees46/kmp.git")
-            url.set("https://github.com/rees46/kmp/tree/master")
+            connection.set("scm:git:github.com:atls/kmp.git")
+            developerConnection.set("scm:git:ssh://github.com:atls/kmp.git")
+            url.set("https://github.com/atls/kmp/tree/master")
           }
         }
       }
