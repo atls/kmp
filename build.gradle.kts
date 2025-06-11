@@ -23,7 +23,7 @@ val versionFile = file("version.properties")
 val projectVersion = versionFile.readText().substringAfter("VERSION_NAME=").trim()
 
 allprojects {
-  group = "com.atls"
+  group = "com.rees46"
   version = projectVersion
 
   apply(plugin = "maven-publish")
@@ -51,9 +51,9 @@ allprojects {
         artifact(tasks["javadocJar"])
 
         pom {
-          name.set("atls KMP Library")
-          description.set("Kotlin Multiplatform library for atls e-commerce platform")
-          url.set("https://github.com/atls/kmp")
+          name.set("rees46 KMP Library")
+          description.set("Kotlin Multiplatform library for rees46 e-commerce platform")
+          url.set("https://github.com/rees46/kmp")
 
           licenses {
             license {
@@ -71,9 +71,9 @@ allprojects {
           }
 
           scm {
-            connection.set("scm:git:github.com:atls/kmp.git")
-            developerConnection.set("scm:git:ssh://github.com:atls/kmp.git")
-            url.set("https://github.com/atls/kmp/tree/master")
+            connection.set("scm:git:github.com:rees46/kmp.git")
+            developerConnection.set("scm:git:ssh://github.com:rees46/kmp.git")
+            url.set("https://github.com/rees46/kmp/tree/master")
           }
         }
       }
@@ -87,15 +87,13 @@ allprojects {
     val signing_key: String? by project
     val signing_password: String? by project
 
-    if (gradle.taskGraph.hasTask("publish")) {
-      if (signing_key != null) {
+    if (signing_key != null) {
         useInMemoryPgpKeys(signing_keyId, signing_key, signing_password)
-      } else {
-        throw GradleException("Signing key not configured!")
-      }
-
-      sign(publishing.publications)
+    } else {
+        logger.warn("Signing key not configured - artifacts will not be signed")
     }
+
+    sign(publishing.publications)
   }
 }
 
