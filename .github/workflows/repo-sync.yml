@@ -26,9 +26,7 @@ jobs:
   repoSync:
     needs: prepare
     if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
-    # TODO rm
-    # uses: atls/shared/.github/workflows/repo-sync.yaml@master
-    uses: atls/shared/.github/workflows/repo-sync.yaml@refactor/workflow
+    uses: atls/shared/.github/workflows/repo-sync.yaml@master
     secrets:
       appSecret: ${{ secrets.REES46_PUBLISHER_SECRET }}
     with:

@@ -2,21 +2,7 @@
   "branches": ["master"],
   "plugins":
     [
-      [
-        "@semantic-release/commit-analyzer",
-        {
-          "preset": "angular",
-          "releaseRules":
-            [
-              { "type": "refactor", "release": "patch" },
-              { "subject": "sync\\/release-.*", "release": "minor" },
-              { "type": "sync", "release": "minor" },
-              { "scope": "release", "release": "minor" },
-            ],
-          "parserOpts":
-            { "noteKeywords": ["BREAKING CHANGE", "BREAKING CHANGES"] },
-        },
-      ],
+      "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
       [
         "@semantic-release/git",
@@ -26,14 +12,8 @@
         },
       ],
       [
-        "@semantic-release/github",
-        { "successComment": false, "releasedLabels": false },
-      ],
-      [
         "@semantic-release/exec",
-        {
-          "prepareCmd": "chmod +x ./scripts/update_version.sh && ./scripts/update_version.sh ${nextRelease.version}",
-        },
+        { "prepareCmd": "./scripts/update_version.sh ${nextRelease.version}" },
       ],
     ],
 }
