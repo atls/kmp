@@ -2,35 +2,22 @@
   "branches": ["master"],
   "plugins":
     [
-      "@semantic-release/commit-analyzer",
       [
-        "@semantic-release/release-notes-generator",
+        "@semantic-release/commit-analyzer",
         {
-          "preset": "conventionalcommits",
-          "presetConfig":
-            {
-              "types":
-                [
-                  { type: "feat", section: "Features", hidden: false },
-                  { type: "fix", section: "Bug Fixes", hidden: false },
-                  {
-                    type: "perf",
-                    section: "Performance Improvements",
-                    hidden: false,
-                  },
-                  { type: "revert", section: "Reverts", hidden: false },
-                  { type: "docs", section: "Other Updates", hidden: false },
-                  { type: "style", section: "Other Updates", hidden: false },
-                  { type: "chore", section: "Other Updates", hidden: false },
-                  { type: "refactor", section: "Other Updates", hidden: false },
-                  { type: "test", section: "Other Updates", hidden: false },
-                  { type: "build", section: "Other Updates", hidden: false },
-                  { type: "ci", section: "Other Updates", hidden: false },
-                  { type: "sync", section: "Other Updates", hidden: false },
-                ],
-            },
+          "preset": "angular",
+          "releaseRules":
+            [
+              { "type": "refactor", "release": "patch" },
+              { "subject": "sync\\/release-.*", "release": "minor" },
+              { "type": "sync", "release": "minor" },
+              { "scope": "release", "release": "minor" },
+            ],
+          "parserOpts":
+            { "noteKeywords": ["BREAKING CHANGE", "BREAKING CHANGES"] },
         },
       ],
+      "@semantic-release/release-notes-generator",
       [
         "@semantic-release/git",
         {
@@ -39,11 +26,13 @@
         },
       ],
       [
+        "@semantic-release/github",
+        { "successComment": false, "releasedLabels": false },
+      ],
+      [
         "@semantic-release/exec",
         {
-          {
-            "prepareCmd": "./scripts/update_version.sh ${nextRelease.version}",
-          },
+          "prepareCmd": "chmod +x ./scripts/update_version.sh && ./scripts/update_version.sh ${nextRelease.version}",
         },
       ],
     ],
