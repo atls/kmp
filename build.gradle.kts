@@ -89,11 +89,10 @@ allprojects {
 
     if (signing_key != null) {
         useInMemoryPgpKeys(signing_keyId, signing_key, signing_password)
+        sign(publishing.publications)
     } else {
         logger.warn("Signing key not configured - artifacts will not be signed")
     }
-
-    sign(publishing.publications)
   }
 }
 
