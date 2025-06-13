@@ -13,6 +13,7 @@ jobs:
     uses: atls/shared/.github/workflows/release-commit-finder.yaml@master
     secrets:
       githubToken: ${{ secrets.GITHUB_TOKEN }}
+      commitMessage: "feat(release): version"
 
   bump-version:
     needs: find-release-commit
