@@ -14,7 +14,7 @@ jobs:
       github.event_name == 'workflow_dispatch' ||
       (
         github.event.pull_request.merged == true &&
-        !startsWith(github.event.pull_request.head.ref, 'release/')
+        startsWith(github.head_ref, 'release/')
       )
     permissions: write-all
     runs-on: ubuntu-latest
