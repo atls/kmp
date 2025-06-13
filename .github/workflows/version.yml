@@ -20,7 +20,9 @@ jobs:
       github.event_name == 'workflow_dispatch' || (
         github.event_name == 'push' &&
         needs.find-release-commit.outputs.hasCommit == 'false')
-    uses: atls/shared/.github/workflows/multiplatform-version.yaml@master
+    # TODO UNCOMMENT
+    # uses: atls/shared/.github/workflows/multiplatform-version.yaml@master
+    uses: atls/shared/.github/workflows/multiplatform-version.yaml@refactor/workflow
     permissions: write-all
     secrets:
       appSecret: ${{ secrets.ATLANTIS_SUPER_BOT_PRIVATE_KEY }}
