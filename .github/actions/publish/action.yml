@@ -40,3 +40,4 @@ runs:
         ./gradlew :android:publishAllPublicationsToGitHubPackagesRepository
         ./gradlew :compose:publishAllPublicationsToGitHubPackagesRepository
         ./gradlew :multiplatform:publishAllPublicationsToGitHubPackagesRepository
+        ./gradlew :generator:publishAllPublicationsToGitHubPackagesRepository
