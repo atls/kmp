@@ -1,4 +1,4 @@
-name: Publish to sonatype and GH-packages
+name: Publish to GH-packages
 
 on:
   pull_request:
