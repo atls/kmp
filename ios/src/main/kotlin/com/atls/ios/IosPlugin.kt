@@ -18,13 +18,6 @@ class IosPlugin : Plugin<Project> {
                 val xcFramework = XCFramework(xcFrameworkName)
 
                 extensions.configure<KotlinMultiplatformExtension> {
-                    iosX64().apply {
-                        binaries.framework {
-                            baseName = xcFrameworkName
-                            xcFramework.add(this)
-                        }
-                    }
-
                     iosArm64().apply {
                         binaries.framework {
                             baseName = xcFrameworkName
