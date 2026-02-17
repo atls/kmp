@@ -22,7 +22,6 @@ class ComposePlugin : Plugin<Project> {
                 "org.jetbrains.compose.foundation:foundation:$composeVersion",
                 "org.jetbrains.compose.material:material:$composeVersion",
                 "org.jetbrains.compose.ui:ui:$composeVersion",
-//                "org.jetbrains.compose.components:components-resources:$composeVersion",
                 "org.jetbrains.compose.components:components-ui-tooling-preview:$composeVersion"
             )
 
